@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="open_flutter_view">Open Flutter View</string>
+</resources>
