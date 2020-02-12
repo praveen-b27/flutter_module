@@ -17,10 +17,11 @@ class _RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Name Generator'),
-        leading: IconButton(icon: Icon(Icons.arrow_back),
-         onPressed: () {
-          platform.invokeMethod('onBackPressed');
-        }),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              platform.invokeMethod('onBackPressed');
+            }),
       ),
       body: _buildSuggestions(),
     );
@@ -28,8 +29,10 @@ class _RandomWordsState extends State<RandomWords> {
 
   Widget _buildSuggestions() {
     _suggestions = generateWordPairs().take(30).toList();
+    ScrollController _controller = new ScrollController();
 
     return ListView.builder(
+        controller: _controller,
         padding: const EdgeInsets.all(16.0),
         itemCount: 30,
         itemBuilder: (context, index) {
@@ -39,10 +42,15 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
+    return GestureDetector(
+        onTap: () {
+          print('object tapped');
+        },
+        child: ListTile(
+        title: Text(
+          pair.asPascalCase,
+          style: _biggerFont,
+        ),
       ),
     );
   }
